@@ -1,13 +1,12 @@
 //
-//  ChatViewController.swift
-//  Flash Chat iOS13
+//  WelcomeViewController.swift
+//  Flash Chat iOS
 //
-//  Created by Angela Yu on 21/10/2019.
-//  Copyright © 2019 Angela Yu. All rights reserved.
+//  Created by Cao Thanh Nhan.
 //
 
 import UIKit
-
+import Firebase
 class ChatViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
@@ -15,11 +14,22 @@ class ChatViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title="⚡️FlashChat"
+        navigationItem.hidesBackButton=true
 
     }
     
     @IBAction func sendPressed(_ sender: UIButton) {
     }
     
-
+    @IBAction func logOutPressed(_ sender: UIBarButtonItem) {
+        let firebaseAuth = Auth.auth()
+    do {
+      try firebaseAuth.signOut()
+        navigationController?.popToRootViewController(animated: true)
+    } catch let signOutError as NSError {
+      print ("Error signing out: %@", signOutError)
+    }
+          }
+    
 }
